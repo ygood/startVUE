@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <h1>智能时代</h1>
+    <i><b><h1>智能时代</h1></b></i>
     <div class="login">
         <ul>
           <li><h1 style="margin-left: 40px;">用户登录</h1></li>
@@ -9,10 +9,10 @@
             <li><el-input placeholder="请输入密码" v-model="formInline.password" show-password style="width:220px"></el-input></li>
           </el-form>
           <li>
-            <el-button type="primary" round>登录</el-button>
-            <el-button type="primary" round style="margin-left: 30px;">注册</el-button>  
+            <el-button type="primary" round @click="login">登录</el-button>
+            <el-button type="primary" round style="margin-left: 30px;" @click="register">注册</el-button>  
           </li>
-          <li sty><a href="http://www.baidu.com" target="_blank">忘记密码？</a></li>
+          <li><a href="http://www.baidu.com" target="_blank">忘记密码？</a></li>
         </ul>
     </div>
   </div>
@@ -28,6 +28,14 @@ export default {
         ppassword:''
       },
      
+    }
+  },
+  methods:{
+    register : function(){
+      console.log("register");
+    },
+    login : function(){
+      console.log("login");
     }
   }
 }
@@ -50,7 +58,7 @@ export default {
     background-color:whitesmoke;
     margin-top: 50px;
     width: 300px;
-    margin-left: 1030px;
+    margin-left: 990px;
     margin-right: 10px;
   }
   li{
@@ -65,6 +73,6 @@ export default {
     margin-left: 20px;
   }
   a{
-    margin-left: 80px;
+    margin-left: 75px;
   }
 </style>
