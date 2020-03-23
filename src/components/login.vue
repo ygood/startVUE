@@ -5,8 +5,8 @@
         <ul>
           <li><h1 style="margin-left: 40px;">用户登录</h1></li>
           <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <li><el-input v-model="formInline.username" placeholder="请输入用户名" style="width:220px"></el-input></li>
-            <li><el-input placeholder="请输入密码" v-model="formInline.password" show-password style="width:220px"></el-input></li>
+            <li><el-input v-model="formInline.username" @blur="error" placeholder="请输入用户名" style="width:220px"></el-input></li><span class="error" v-if="formInline.errusername">不能为空!</span>
+            <li><el-input placeholder="请输入密码" v-model="formInline.password" @blur="error" show-password style="width:220px"></el-input></li><span class="error" v-if="formInline.errpassword">不能为空!</span>
           </el-form>
           <li>
             <el-button type="primary" round @click="login">登录</el-button>
@@ -25,7 +25,9 @@ export default {
     return {
       formInline: {
         username:'',
-        ppassword:''
+        password:'',
+        errusername:false,
+        errpassword:false,
       },
      
     }
@@ -36,6 +38,18 @@ export default {
     },
     login : function(){
       console.log("login");
+    },
+    error : function(){
+      if(this.formInline.username == ""){
+        this.formInline.errusername = true;
+      }else{
+        this.formInline.errusername = false 
+      }
+      if(this.formInline.password == ""){
+        this.formInline.errpassword = true;
+      }else{
+        this.formInline.errpassword = false;
+      }
     }
   }
 }
@@ -74,5 +88,8 @@ export default {
   }
   a{
     margin-left: 75px;
+  }
+  .error{
+    color: red;
   }
 </style>
