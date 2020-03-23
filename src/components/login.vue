@@ -26,10 +26,9 @@ export default {
       formInline: {
         username:'',
         password:'',
-        errusername:false,
-        errpassword:false,
-      },
-     
+        errusername: false,
+        errpassword: false,
+      },     
     }
   },
   methods:{
@@ -37,7 +36,18 @@ export default {
       console.log("register");
     },
     login : function(){
-      console.log("login");
+      if(!this.formInline.errusername && !this.formInline.errpassword ){
+        if(this.formInline.username !=this.formInline.password){
+          this.$notify.error({
+            title: '错误',
+            message: '用户名或密码错误，请重试！'
+          });
+          return
+        }
+        this.$router.replace('/manage')
+      }else{
+        return
+      }
     },
     error : function(){
       if(this.formInline.username == ""){
