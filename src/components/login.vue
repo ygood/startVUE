@@ -5,8 +5,8 @@
         <ul>
           <li><h1 style="margin-left: 40px;">用户登录</h1></li>
           <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <li><el-input v-model="formInline.username" @blur="error" placeholder="请输入用户名" style="width:220px"></el-input></li><span class="error" v-if="formInline.errusername">不能为空!</span>
-            <li><el-input placeholder="请输入密码" v-model="formInline.password" @blur="error" show-password style="width:220px"></el-input></li><span class="error" v-if="formInline.errpassword">不能为空!</span>
+            <li><el-input v-model="formInline.username" @blur="usererror" placeholder="请输入用户名" style="width:220px"></el-input></li><span class="error" v-if="formInline.errusername">不能为空!</span>
+            <li><el-input placeholder="请输入密码" v-model="formInline.password" @blur="passworderroe" show-password style="width:220px"></el-input></li><span class="error" v-if="formInline.errpassword">不能为空!</span>
           </el-form>
           <li>
             <el-button type="primary" round @click="login">登录</el-button>
@@ -36,25 +36,40 @@ export default {
       console.log("register");
     },
     login : function(){
-      if(!this.formInline.errusername && !this.formInline.errpassword ){
-        if(this.formInline.username !=this.formInline.password){
-          this.$notify.error({
-            title: '错误',
-            message: '用户名或密码错误，请重试！'
-          });
-          return
+      if(this.formInline.username == "" || this.formInline.password == ""){
+        if(this.formInline.username == ""){
+          this.formInline.errusername = true;
         }
-        this.$router.replace('/manage')
-      }else{
+        if(this.formInline.password == ""){
+          this.formInline.errpassword = true;
+        }
+        this.$notify.error({
+          title: '错误',
+          message: '用户名或密码不能为空！'
+        });
         return
+      }else if(this.formInline.username !=this.formInline.password){
+        this.$notify.error({
+          title: '错误',
+          message: '用户名或密码错误，请重试！'
+        });
+        return
+      }else{
+         this.$notify.success({
+          title: '登录成功',
+          message: '欢迎回来！'
+        });
+        this.$router.replace('/manage')
       }
     },
-    error : function(){
+    usererror : function(){
       if(this.formInline.username == ""){
         this.formInline.errusername = true;
       }else{
         this.formInline.errusername = false 
-      }
+      } 
+    },
+    passworderroe:function(){
       if(this.formInline.password == ""){
         this.formInline.errpassword = true;
       }else{
