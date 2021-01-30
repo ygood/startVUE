@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <i><b><h1>智能时代</h1></b></i>
+    <i><b><h1>Individual Demo</h1></b></i>
     <div class="login">
         <ul>
           <li><h1 style="margin-left: 40px;">用户登录</h1></li>
@@ -94,11 +94,12 @@ export default {
     height: 100%;
   }
   .login{
-    background-color:whitesmoke;
+    background-color:rgb(230, 217, 217,0.85);
     margin-top: 50px;
     width: 300px;
-    margin-left: 990px;
-    margin-right: 10px;
+    float: right;
+    margin-right: 80px;
+    height: 400px;
   }
   li{
     padding-top: 20px;

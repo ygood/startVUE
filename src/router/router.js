@@ -3,8 +3,10 @@ import Vue from 'vue'
 
 Vue.use(Router);
 
-import login from '../components/login'
-import manage from '../components/manage'
+import login from '../view/login'
+import manage from '../view/manage'
+import diff from '../view/workview/codemirrorDiff'
+import overflowview from '../view/workview/overflowview'
 
 const routes = [
     {
@@ -13,7 +15,17 @@ const routes = [
     },
     {
         path:'/manage',
-        component:manage
+        component:manage,
+        children:[
+            {
+                path:'diff',
+                component:diff,  
+            },
+            {
+                path:'overflowview',
+                component:overflowview,  
+            }
+        ]
     }
 ]
 
